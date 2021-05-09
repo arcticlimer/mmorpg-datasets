@@ -15,18 +15,11 @@ async def run(session):
 
     items = await client.get('/json/all-items/all')
     gem_price = await client.get('/json/gem-price')
-
-    first_recipe = await client.get('/json/recipes/*all*', parse=True)
-    last_page = first_recipe['last_page']
-    coroutines = (client.get(f'/json/recipes/*all*/{i}', parse=True)
-                  for i in range(2, last_page + 1))
-
-    recipes = await asyncio.gather(*coroutines)
-    recipes_str = client.json_to_string(recipes)
+    recipes = await client.get('/json/all-recipes/all')
 
     timestamp = utils.timestamp()
     path = f'{DATA_DIRECTORY}/{timestamp}'
 
     await utils.write_json(path, 'gem_price',    gem_price)
     await utils.write_json(path, 'items_market', items)
-    await utils.write_json(path, 'recipes',      recipes_str)
+    await utils.write_json(path, 'recipes',      recipes)
