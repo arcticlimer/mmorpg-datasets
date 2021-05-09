@@ -27,6 +27,6 @@ async def run(session):
     timestamp = utils.timestamp()
     path = f'{DATA_DIRECTORY}/{timestamp}'
 
-    utils.write_json(path, 'gem_price',    gem_price)
-    utils.write_json(path, 'items_market', items)
-    utils.write_json(path, 'recipes',      recipes_str)
+    await utils.write_json(path, 'gem_price',    gem_price)
+    await utils.write_json(path, 'items_market', items)
+    await utils.write_json(path, 'recipes',      recipes_str)

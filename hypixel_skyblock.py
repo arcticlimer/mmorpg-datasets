@@ -22,8 +22,8 @@ async def run(session):
     timestamp = utils.timestamp()
     path = f'{DATA_DIRECTORY}/{timestamp}'
 
-    utils.write_json(path, 'bazaar',      bazaar_data)
-    utils.write_json(path, 'auctions',    auctions_data)
-    utils.write_json(path, 'players',     current_skyblock_players)
-    utils.write_json(path, 'skills',      skills)
-    utils.write_json(path, 'collections', collections)
+    await utils.write_json(path, 'bazaar',      bazaar_data)
+    await utils.write_json(path, 'auctions',    auctions_data)
+    await utils.write_json(path, 'players',     current_skyblock_players)
+    await utils.write_json(path, 'skills',      skills)
+    await utils.write_json(path, 'collections', collections)
