@@ -9,13 +9,13 @@ import gw2
 import hypixel_skyblock
 
 
-COROUTINES = [hypixel_skyblock.run, gw2.run]
+MODULE_LIST = [hypixel_skyblock, gw2]
 
 
 async def main():
     async with aiohttp.ClientSession() as session:
-        for coro in COROUTINES:
-            await asyncio.create_task(coro(session))
+        coroutines = (module.run(session) for module in MODULE_LIST)
+        await asyncio.gather(*coroutines)
 
 
 if __name__ == "__main__":
